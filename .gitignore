@@ -1,0 +1,9 @@
+*.pem
+*private*
+*.key
+plus_ota_*
+*.merged.bin
+*.elf
+*.map
+LEDGER.json
+*NEVER*
