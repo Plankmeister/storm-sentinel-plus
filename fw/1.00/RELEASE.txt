@@ -1,0 +1,35 @@
+Storm Sentinel PLUS 1.00
+
+file        StormSentinalPlus.ino.bin (1857232 bytes)
+sha256      65ca7e22eb0745f9f5dfb901ba48acbd78451c023b631ce91a6f095a324387c8
+signature   StormSentinalPlus.ino.bin.sig (71 bytes, DER ECDSA P-256 / SHA-256)
+key         slot A, public key sha256 8cb585a8ab797c64f70d057d3438e812bbd28e72e5cfd5b8f1f468947121e600
+made        2026-11-17 21:18
+toolchain   arduino-cli, esp32:esp32 3.3.7, LVGL 9.5.0, FlashSize=4M, partitions.csv (doc 04 4.3)
+core        C:\Users\jason\ssp_core_iram\c0\Arduino15 (--cli-config C:\Users\jason\ssp_core_iram\c0\arduino-cli.yaml); esp32 platform 3.3.7; build.options.json hardwareFolders C:\Users\jason\ssp_core_iram\c0\Arduino15\packages
+source      C:\Users\jason\OneDrive\Documents\Projects\Weather\StormSentinalPlus\StormSentinalPlus\src
+
+checks:
+  OK   ESP32-S3 image: OK (6 segments, checksum and SHA-256 OK, chip ESP32-S3)
+  OK   size 1857232 B within 256 KiB .. the 2031616 B app slot (partitions.csv)
+  OK   marker: PLKFW|StormSentinalPlus|1.00| found exactly once
+  OK   release profile string SSP_PROFILE=release
+  OK   key slots A and B present (A 8cb585a8ab797c64, B 5e9cafd0509e3056)
+  OK   verifyRollbackLater is strong in the ELF (OTA-27 needs strong)
+  OK   channel https://raw.githubusercontent.com/Plankmeister/storm-sentinel-plus/main/ compiled in
+  OK   no ArduinoOTA (OTA-36)
+  OK   OTA-15 insecure_fallback only on pointer / .sig / .bin: 3 set site(s): svc/ota.cpp:590; svc/ota.cpp:625; svc/ota.cpp:664; 1 read site(s): net/http.cpp:1040
+  OK   core C:\Users\jason\ssp_core_iram\c0\Arduino15 (--cli-config C:\Users\jason\ssp_core_iram\c0\arduino-cli.yaml): the image was built against C:\Users\jason\ssp_core_iram\c0\Arduino15\packages (hardwareFolders in C:\Users\jason\ssp_build_pkg\build_iram_c0_prod\release\build.options.json, layout)
+  OK   Verified OK under the signing public key (slot A)
+  OK   slot A compiled into the image: ok (want ok)
+  OK   slot B compiled into the image: fail (want fail)
+  OK   one byte flipped at 1086342 FAILS: fail
+  OK   a throwaway key's signature FAILS: fail
+  OK   signature 71 B DER
+  OK   production key slots
+
+Upload order (doc 04 4.3 / OTA-32): fw/1.00/ (bin, sig, this file) first; run
+  python tools\ota_bench.py verify-live --version 1.00 --pointer beta.txt --current-image <the .bin the fleet runs now>
+(the .sig must verify under the slots the FLEET trusts, read from that image: B6, WP23 MINOR 1)
+until it reports VERIFIED; THEN upload the pointer file (beta.txt) LAST.
+Never upload anything to Plankmeister/weather (doc 04 OTA-05: the v1.15 fleet flashes any mismatch).
